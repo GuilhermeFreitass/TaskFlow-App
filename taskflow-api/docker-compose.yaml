@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: taskflow-api
+    restart: always
+    ports:
+      - "3333:3333"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@taskflow-db:5432/taskflow?schema=public"
+    command: sh -c "npx prisma migrate dev --name init && npm run dev"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - taskflow-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: taskflow-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: taskflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - taskflow-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: taskflow-pgadmin
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    networks:
+      - taskflow-network
+
+networks:
+  taskflow-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
