@@ -11,7 +11,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      DATABASE_URL: "postgresql://postgres:postgres@taskflow-db:5432/taskflow?schema=public"
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/taskflow?schema=public"
     command: sh -c "npx prisma migrate dev --name init && npm run dev"
     volumes:
       - .:/app
