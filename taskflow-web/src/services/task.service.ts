@@ -31,7 +31,7 @@ export const TaskService = {
     },
 
     update: async (id: number, data: UpdateTaskDTO): Promise<Task> => {
-        return fetchApi(`/task/${id}`, {
+        return fetchApi(`/tasks/${id}`, {
             method: 'PATCH',
             body: JSON.stringify(data),
         })
