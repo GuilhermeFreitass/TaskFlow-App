@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${dmSans.variable} antialiased font-sans bg-gray-950`}>
         <Sidebar />
-        <main className="ml-64 min-h-screen">{children}</main>
+        <main className="ml-64 min-h-screen bg-gray-950">{children}</main>
       </body>
     </html>
   );
