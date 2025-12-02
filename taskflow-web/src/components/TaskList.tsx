@@ -28,14 +28,11 @@ export const TaskList = ({
       )}
       <div className="space-y-4">
         {tasks.map((task) => (
-          <TaskCard
-            key={task.id}
-            task={task}
-            onToggleComplete={onToggleComplete}
-          />
+          <div key={task.id} className="block">
+            <TaskCard task={task} onToggleComplete={onToggleComplete} />
+          </div>
         ))}
       </div>
     </div>
   );
 };
-

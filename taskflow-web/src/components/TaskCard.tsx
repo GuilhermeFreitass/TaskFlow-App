@@ -20,8 +20,10 @@ interface TaskCardProps {
 }
 
 const getPriorityColor = (priority: string) => {
-  if (priority === "Alta") return "bg-red-500/20 text-red-400 border-red-500/30";
-  if (priority === "Média") return "bg-orange-500/20 text-orange-400 border-orange-500/30";
+  if (priority === "Alta")
+    return "bg-red-500/20 text-red-400 border-red-500/30";
+  if (priority === "Média")
+    return "bg-orange-500/20 text-orange-400 border-orange-500/30";
   return "bg-green-500/20 text-green-400 border-green-500/30";
 };
 
@@ -44,7 +46,7 @@ export const TaskCard = ({ task, onToggleComplete }: TaskCardProps) => {
       onClick={() => onToggleComplete?.(task.id)}
     >
       <div className="flex items-start gap-4">
-        <div className="flex-shrink-0 mt-1">
+        <div className="shrink-0 mt-1">
           {task.completed ? (
             <AiOutlineCheckCircle className="h-6 w-6 text-teal-400" />
           ) : (
@@ -86,4 +88,3 @@ export const TaskCard = ({ task, onToggleComplete }: TaskCardProps) => {
     </Card>
   );
 };
-
