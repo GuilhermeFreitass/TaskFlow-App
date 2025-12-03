@@ -60,15 +60,15 @@ const Sidebar = () => {
               <li key={item.id}>
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-3 px-4 py-4 rounded-lg transition-colors ${
+                  className={`flex items-center gap-3 px-4 py-4 rounded-lg transition-all duration-200 ${
                     isActive
-                      ? "bg-teal-500/20 text-teal-400 shadow-sm"
-                      : "text-gray-400 hover:bg-gray-800 hover:text-gray-200"
+                      ? "bg-teal-500/20 text-teal-400 shadow-sm border border-teal-500/50"
+                      : "text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 hover:border hover:border-gray-700 border border-transparent"
                   }`}
                 >
                   <Icon
-                    className={`h-6 w-6 ${
-                      isActive ? "text-teal-400" : "text-gray-400"
+                    className={`h-6 w-6 transition-colors duration-200 ${
+                      isActive ? "text-teal-400" : "text-gray-400 group-hover:text-gray-200"
                     }`}
                   />
                   <span className="text-base font-medium">{item.label}</span>
