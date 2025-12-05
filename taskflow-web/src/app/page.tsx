@@ -32,25 +32,25 @@ export default function Home() {
         <StatCard
           title="Total de Tarefas"
           value="0"
-          description="tarefas criadas"
+          description="Tarefas Criadas"
           icon={<AiOutlineFileText />}
         />
         <StatCard
           title="Concluídas"
           value="0"
-          description="tarefas finalizadas"
+          description="Tarefas Finalizadas"
           icon={<AiOutlineCheckCircle />}
         />
         <StatCard
           title="Pendentes"
           value="0"
-          description="aguardando"
+          description="Aguardando"
           icon={<AiOutlineClockCircle />}
         />
         <StatCard
           title="Alta Prioridade"
           value="0"
-          description="precisam atenção"
+          description="Precisam de Atenção"
           icon={<AiOutlineRise />}
         />
       </div>
