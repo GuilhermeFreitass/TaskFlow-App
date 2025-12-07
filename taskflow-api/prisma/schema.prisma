@@ -14,12 +14,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum TaskPriority {
+  Alta
+  Media
+  Normal
+}
+
+enum TaskStatus {
+  Pendente
+  EmProgresso
+  Concluido
+  Cancelado
+}
 
 model task {
-  id Int @id @default (autoincrement())
-  title String 
+  id          Int          @id @default(autoincrement())
+  title       String
   description String?
-  done Boolean @default(false)
+  done        Boolean      @default(false)
+  priority    TaskPriority @default(Normal)
+  dueDate     DateTime?
+  isImportant Boolean      @default(false)
+  status      TaskStatus   @default(Pendente)
+  projectId   Int?
+  project     project?     @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@map("task")
+}
+
+model project {
+  id        Int      @id @default(autoincrement())
+  name      String
+  color     String
+  tasks     task[]
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("project")
 }
