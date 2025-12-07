@@ -12,6 +12,9 @@ ADD COLUMN     "projectId" INTEGER,
 ADD COLUMN     "status" "TaskStatus" NOT NULL DEFAULT 'Pendente',
 ALTER COLUMN "updatedAt" DROP DEFAULT;
 
+-- Migrate existing data: Update status for completed tasks
+UPDATE "task" SET "status" = 'Concluido' WHERE "done" = true;
+
 -- CreateTable
 CREATE TABLE "project" (
     "id" SERIAL NOT NULL,
