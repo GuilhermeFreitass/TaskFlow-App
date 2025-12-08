@@ -1,5 +1,6 @@
 import { CreateTaskDTO } from "../dtos/create-task.dto";
 import { updateTaskDTO } from "../dtos/update-task.dto";
+import { FilterTasksDTO } from "../dtos/filter-tasks.dto";
 import { TaskRepository } from "../repositories/task.repository";
 
 export class TaskService {
@@ -53,6 +54,38 @@ export class TaskService {
 
         const deletedTask = await this.repository.delete(id)
         return deletedTask
+    }
 
+    async getTasksByProject(projectId: number) {
+        return this.repository.findByProject(projectId)
+    }
+
+    async getTasksByPriority(priority: "Alta" | "Media" | "Normal") {
+        return this.repository.findByPriority(priority)
+    }
+
+    async getTasksToday() {
+        return this.repository.findToday()
+    }
+
+    async getTasksPlanned() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return this.repository.findByDateRange(today, new Date('2099-12-31'))
+    }
+
+    async getTasksImportant() {
+        return this.repository.findImportant()
+    }
+
+    async searchTasks(query: string) {
+        if (!query || query.trim().length === 0) {
+            return this.repository.findAll()
+        }
+        return this.repository.search(query)
+    }
+
+    async getTasksWithFilters(filters: FilterTasksDTO) {
+        return this.repository.findWithFilters(filters)
     }
 }
