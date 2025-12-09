@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
-import { TaskCard, Task } from "./TaskCard";
+import { TaskCard } from "./TaskCard";
+import { Task } from "@/types/task";
 
 interface TaskListProps {
   tasks: Task[];
-  onToggleComplete?: (id: string) => void;
+  onToggleComplete?: (id: number) => void;
   showHeader?: boolean;
   className?: string;
 }
@@ -16,7 +17,7 @@ export const TaskList = ({
   showHeader = true,
   className = "",
 }: TaskListProps) => {
-  const pendingCount = tasks.filter((task) => !task.completed).length;
+  const pendingCount = tasks.filter((task) => !task.done).length;
 
   return (
     <div className={`px-16 py-8 ${className}`}>
