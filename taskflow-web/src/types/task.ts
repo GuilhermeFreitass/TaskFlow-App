@@ -1,7 +1,7 @@
 export interface Task {
     id: number;
     title: string;
-    description: string;
+    description?: string | null;
     done: boolean;
     priority: "Alta" | "Media" | "Normal";
     dueDate?: string | null;
