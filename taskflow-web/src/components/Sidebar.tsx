@@ -42,6 +42,10 @@ const menuItems = [
 const Sidebar = () => {
   const pathname = usePathname();
 
+  if (pathname === "/login") {
+    return null;
+  }
+
   return (
     <aside className="fixed left-0 top-0 z-40 h-screen w-64 bg-gray-950 border-r border-gray-800 flex flex-col">
       <div className="flex h-16 items-center gap-3 px-6 border-b border-gray-800">
@@ -68,7 +72,9 @@ const Sidebar = () => {
                 >
                   <Icon
                     className={`h-6 w-6 transition-colors duration-200 ${
-                      isActive ? "text-teal-400" : "text-gray-400 group-hover:text-gray-200"
+                      isActive
+                        ? "text-teal-400"
+                        : "text-gray-400 group-hover:text-gray-200"
                     }`}
                   />
                   <span className="text-base font-medium">{item.label}</span>
